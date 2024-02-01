@@ -405,7 +405,7 @@ beta_vpd_gs_n_plot_g <- cbind(beta_gs_n_plot_g,
                               vpd_gs_n_plot_g,
                               size = "max")
 
-# tiff(filename = "plots/Figure2.tiff", 
+# tiff(filename = "/Users/nicksmith/Documents/Research/amjbot_otnot/revision/revision2/plots/Figure2.tiff", 
 #      width = 18, height = 18, units = 'in', res = 300)
 # grid.newpage()
 # grid.draw(beta_vpd_gs_n_plot_g)
@@ -417,7 +417,7 @@ timescale_diurnal_plot_g <- cbind(timescale_plot_g,
                                   diurnal_plot_g, 
                                   size = "max")
 
-# tiff(filename = "plots/Figure1.tiff", 
+# tiff(filename = "/Users/nicksmith/Documents/Research/amjbot_otnot/revision/revision2/plots/Figure1.tiff", 
 #      width = 18, height = 8, units = 'in', res = 300)
 # grid.newpage()
 # grid.draw(timescale_diurnal_plot_g)
