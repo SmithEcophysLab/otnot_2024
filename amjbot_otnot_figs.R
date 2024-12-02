@@ -319,16 +319,21 @@ beta_gs_plot <- ggplot(data = beta_sensitivity, aes(y = gs/gs[991], x = beta)) +
         legend.text = element_text(size = rel(1)),
         plot.tag = element_text(size = rel(2)),
         axis.title.y=element_text(size=rel(2.2), colour = 'black'),
-        axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
+        axis.title.x=element_text(size=rel(2.2), colour = 'black'),
+        axis.text.x=element_text(size=rel(2), colour = 'black'),
         axis.text.y=element_text(size=rel(2), colour = 'black'),
         panel.background = element_rect(fill = 'white', colour = 'black'),
         panel.grid.major = element_line(colour = "grey")) +
   geom_line(color = 'blue', linewidth = 3, lty = 1) +
   ylab(expression('Relative stomatal conductance')) +
   xlab('Cost of acquiring nutrients relative to water (unitless)') +
-  ylim(c(0, 1)) +
-  labs(tag = "A")
+  ylim(c(0, 1))
+
+tiff(filename = "plots/beta_gs_plot.tiff", 
+    width = 9, height = 9, units = 'in', res = 300)
+grid.newpage()
+grid.draw(beta_gs_plot)
+dev.off()
 
 vpd_gs_plot <- ggplot(data = vpd_sensitivity, aes(y = gs/gs[1], x = vpdo)) +
   theme(legend.position = "right", 
@@ -336,18 +341,25 @@ vpd_gs_plot <- ggplot(data = vpd_sensitivity, aes(y = gs/gs[1], x = vpdo)) +
         legend.title = element_text(size = rel(1)),
         legend.text = element_text(size = rel(1)),
         plot.tag = element_text(size = rel(2)),
-        axis.title.y=element_blank(),
-        axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.text.y=element_blank(),
+        axis.title.y=element_text(size=rel(2.2), colour = 'black'),
+        axis.title.x=element_text(size=rel(2.2), colour = 'black'),
+        axis.text.x=element_text(size=rel(2), colour = 'black'),
+        axis.text.y=element_text(size=rel(2), colour = 'black'),
         panel.background = element_rect(fill = 'white', colour = 'black'),
         panel.grid.major = element_line(colour = "grey")) +
   geom_line(color = 'blue', linewidth = 3, lty = 1) +
   ylab(expression('Relative stomatal conductance')) +
   xlab('Atmospheric vapor pressure deficit (kPa)') +
   ylim(c(0, 1)) +
-  xlim(c(0,5)) +
-  labs(tag = "B")
+  xlim(c(0,5))
+
+
+tiff(filename = "plots/vpd_gs_plot.tiff", 
+     width = 9, height = 9, units = 'in', res = 300)
+grid.newpage()
+grid.draw(vpd_gs_plot)
+dev.off()
+
 
 beta_n_plot <- ggplot(data = beta_sensitivity, aes(y = nphoto/nphoto[1], x = beta)) +
   theme(legend.position = "right", 
@@ -364,8 +376,13 @@ beta_n_plot <- ggplot(data = beta_sensitivity, aes(y = nphoto/nphoto[1], x = bet
   geom_line(color = 'darkorange', linewidth = 3, lty = 1) +
   ylab(expression('Relative photosynthetic nitrogen')) +
   xlab('Acq. cost of nutrients relative to water (unitless)') +
-  ylim(c(0.9, 1)) +
-  labs(tag = "C")
+  ylim(c(0.9, 1))
+
+tiff(filename = "plots/beta_n_plot.tiff", 
+     width = 9, height = 9, units = 'in', res = 300)
+grid.newpage()
+grid.draw(beta_n_plot)
+dev.off()
 
 vpd_n_plot <- ggplot(data = vpd_sensitivity, aes(y = nphoto/nphoto[46], x = vpdo)) +
   theme(legend.position = "right", 
@@ -373,18 +390,23 @@ vpd_n_plot <- ggplot(data = vpd_sensitivity, aes(y = nphoto/nphoto[46], x = vpdo
         legend.title = element_text(size = rel(1)),
         legend.text = element_text(size = rel(1)),
         plot.tag = element_text(size = rel(2)),
-        axis.title.y=element_blank(),
+        axis.title.y=element_text(size=rel(2.2), colour = 'black'),
         axis.title.x=element_text(size=rel(2.2), colour = 'black'),
         axis.text.x=element_text(size=rel(2), colour = 'black'),
-        axis.text.y=element_blank(),
+        axis.text.y=element_text(size=rel(2), colour = 'black'),
         panel.background = element_rect(fill = 'white', colour = 'black'),
         panel.grid.major = element_line(colour = "grey")) +
   geom_line(color = 'darkorange', linewidth = 3, lty = 1) +
   ylab(expression('Relative photosynthetic nitrogen')) +
   xlab('Atmospheric vapor pressure deficit (kPa)') +
   ylim(c(0.9, 1)) +
-  xlim(c(0,5)) +
-  labs(tag = "D")
+  xlim(c(0,5))
+
+tiff(filename = "plots/vpd_n_plot.tiff", 
+     width = 9, height = 9, units = 'in', res = 300)
+grid.newpage()
+grid.draw(vpd_n_plot)
+dev.off()
 
 ###################################################################################################
 ## output plots
