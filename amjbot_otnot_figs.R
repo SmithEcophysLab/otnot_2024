@@ -11,13 +11,13 @@ library(ggplot2)
 library(grid)
 
 ## load up model functions (can be sourced from github.com/smithecophyslab/optimal_vcmax_R)
-# source('../optimal_vcmax_R/calc_optimal_vcmax.R')
-# sourceDirectory('../optimal_vcmax_R/functions')
+source('../optimal_vcmax_R/calc_optimal_vcmax.R')
+sourceDirectory('../optimal_vcmax_R/functions')
 
 ## load NEON data (can be sourced from NEON data portal)
 # HF_temp = read.csv('/Users/nicksmith/Documents/Research/Timescale_acclimation/Sensitivity/NEON_HarvardForest/NEON_temp-air-single/stackedFiles/SAAT_30min.csv')
-# HF_par = read.csv('/Users/nicksmith/Documents/Research/Timescale_acclimation/Sensitivity/NEON_HarvardForest/NEON_par/stackedFiles/PARPAR_30min.csv')
-# HF_rh = read.csv('/Users/nicksmith/Documents/Research/Timescale_acclimation/Sensitivity/NEON_HarvardForest/NEON_rel-humidity/stackedFiles/RH_30min.csv')
+HF_par = read.csv('/Users/nicksmith/Documents/Research/Timescale_acclimation/Sensitivity/NEON_HarvardForest/NEON_par/stackedFiles/PARPAR_30min.csv')
+HF_rh = read.csv('/Users/nicksmith/Documents/Research/Timescale_acclimation/Sensitivity/NEON_HarvardForest/NEON_rel-humidity/stackedFiles/RH_30min.csv')
 nrow(HF_temp)
 nrow(HF_par)
 nrow(HF_rh)
@@ -143,7 +143,7 @@ timescale_plot <- ggplot(data = timescale_dataframe, aes(y = photosynthesis_seas
   theme(legend.position = "right", 
         plot.title = element_text(size = rel(2.2)),
         legend.title = element_text(size = rel(2)),
-        legend.text = element_text(size = rel(2)),
+        legend.text = element_text(size = rel(1.5)),
         plot.tag = element_text(size = rel(2)),
         axis.title.y=element_text(size=rel(2.2), colour = 'black'),
         axis.title.x=element_text(size=rel(2.2), colour = 'black'),
@@ -157,8 +157,13 @@ timescale_plot <- ggplot(data = timescale_dataframe, aes(y = photosynthesis_seas
   xlab('Acclimation timescale (days)') +
   scale_colour_manual(name = NULL, values =c('blue'='blue','red'='red'), labels = c('Photosynthesis','Cost')) +
   ylim(c(0.2, 1)) +
-  xlim(c(0, 90)) +
-  labs(tag = "A")
+  xlim(c(0, 90))
+
+tiff(filename = "plots/timescale_plot.tiff", 
+     width = 11, height = 9, units = 'in', res = 300)
+grid.newpage()
+grid.draw(timescale_plot)
+dev.off()
 
 ###############################################################################################
 ## 2. figure showing 1 week of diurnal photosynthesis of average and midday acclimation
@@ -280,7 +285,7 @@ diurnal_plot <- ggplot(data = photosynthesis_mean, aes(y=ALEAF, x = seq(1, 312, 
   theme(legend.position = "right", 
         plot.title = element_text(size = rel(2.2)),
         legend.title = element_text(size = rel(2)),
-        legend.text = element_text(size = rel(2)),
+        legend.text = element_text(size = rel(1.5)),
         plot.tag = element_text(size = rel(2)),
         axis.title.y=element_text(size=rel(2.2), colour = 'black'),
         axis.title.x=element_text(size=rel(2.2), colour = 'black'),
@@ -295,9 +300,14 @@ diurnal_plot <- ggplot(data = photosynthesis_mean, aes(y=ALEAF, x = seq(1, 312, 
   xlab('Time (7 total days)') +
   scale_colour_manual(name = 'Acclimated conditions', 
                       values =c('black'='black','orange'='orange'), 
-                      labels = c('Mean','Max')) +
-  ylim(c(-10, 50)) +
-  labs(tag = "B")
+                      labels = c('Mean','Midday')) +
+  ylim(c(-10, 50))
+
+tiff(filename = "plots/diurnal_plot.tiff", 
+     width = 11, height = 9, units = 'in', res = 300)
+grid.newpage()
+grid.draw(diurnal_plot)
+dev.off()
 
 ###############################################################################################
 ## 3. figure showing impact of altered soil resource acquisition costs on 
